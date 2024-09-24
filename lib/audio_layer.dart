@@ -29,7 +29,7 @@ class SVGAAudioLayer {
       try {
         if (!_isReady) {
           _isReady = true;
-          await _player.play(DeviceFileSource(cacheFile.path));
+          await _player.play(DeviceFileSource(cacheFile.path), volume: _videoItem.volume);
           _isReady = false;
         }
         // I noticed that this logic exists in the iOS code of SVGAPlayer
