@@ -1771,7 +1771,7 @@ class MovieEntity extends $pb.GeneratedMessage {
   Map<String, ui.Path> pathCache = {};
   Map<String, Uint8List> audiosData = {};
 
-  double volume = 1.0;
+  double? volume;
 
   void dispose() {
     bitmapCache.values.forEach((element) {
