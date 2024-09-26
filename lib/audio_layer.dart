@@ -22,14 +22,15 @@ class SVGAAudioLayer {
       final cacheDir = await getApplicationCacheDirectory();
       final cacheFile = File('${cacheDir.path}/temp_${audioItem.audioKey}.mp3');
 
-      if (!cacheFile.existsSync() ) {
+      if (!cacheFile.existsSync()) {
         await cacheFile.writeAsBytes(audioData);
       }
 
       try {
         if (!_isReady) {
           _isReady = true;
-          await _player.play(DeviceFileSource(cacheFile.path), volume: _videoItem.volume);
+          await _player.play(DeviceFileSource(cacheFile.path),
+              volume: _videoItem.volume);
           _isReady = false;
         }
         // I noticed that this logic exists in the iOS code of SVGAPlayer
@@ -42,10 +43,16 @@ class SVGAAudioLayer {
   }
 
   pauseAudio() {
+    if (_player.state == PlayerState.disposed) {
+      return;
+    }
     _player.pause();
   }
 
   resumeAudio() {
+    if (_player.state == PlayerState.disposed) {
+      return;
+    }
     _player.resume();
   }
 
@@ -61,8 +68,11 @@ class SVGAAudioLayer {
     return _player.state == PlayerState.paused;
   }
 
-  Future<void> dispose() {
+  Future<void> dispose() async {
+    if (_player.state == PlayerState.disposed) {
+      return;
+    }
     if (isPlaying()) stopAudio();
-    return _player.dispose();
+    _player.dispose();
   }
 }
