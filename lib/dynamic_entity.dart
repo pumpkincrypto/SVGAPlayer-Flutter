@@ -1,8 +1,10 @@
 import 'dart:ui' as ui show Image;
 import 'package:http/http.dart';
 import 'package:flutter/painting.dart';
+import 'proto/svga.pb.dart';
 
-typedef SVGACustomDrawer = Function(Canvas canvas, int frameIndex);
+typedef SVGACustomDrawer = Function(
+    Canvas canvas, SpriteEntity sprite, int frameIndex);
 
 class SVGADynamicEntity {
   final Map<String, bool> dynamicHidden = {};

@@ -103,7 +103,7 @@ class _SVGAPainter extends CustomPainter {
       // draw dynamic
       final dynamicDrawer = videoItem.dynamicItem.dynamicDrawer[imageKey];
       if (dynamicDrawer != null) {
-        dynamicDrawer(canvas, currentFrame);
+        dynamicDrawer(canvas, sprite, currentFrame);
       }
       if (needClip) {
         canvas.restore();
