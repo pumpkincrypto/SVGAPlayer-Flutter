@@ -42,7 +42,7 @@ class SVGAAudioLayer {
     }
   }
 
-  pauseAudio() async {
+  Future<void> pauseAudio() async {
     if (_player.state == PlayerState.disposed) {
       return;
     }
