@@ -42,11 +42,11 @@ class SVGAAudioLayer {
     }
   }
 
-  pauseAudio() {
+  pauseAudio() async {
     if (_player.state == PlayerState.disposed) {
       return;
     }
-    _player.pause();
+    await _player.pause();
   }
 
   resumeAudio() {
