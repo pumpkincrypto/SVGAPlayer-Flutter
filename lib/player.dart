@@ -136,7 +136,7 @@ class SVGAAnimationController extends AnimationController {
   @override
   void stop({bool canceled = true}) async {
     for (final audio in _audioLayers) {
-      await audio.pauseAudio();
+      audio.pauseAudio();
     }
     super.stop(canceled: canceled);
   }
